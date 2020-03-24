@@ -1,3 +1,15 @@
 @{
   Layout = "_Layout";
 }
+
+@model Library.Models.Author
+
+<h2>Are you sure you want to delete @Html.DisplayFor(model => model.Name)?</h2>
+
+@using (Html.BeginForm())
+{
+  <button class="btn" type="submit">Yes</button>
+}
+
+@Html.ActionLink("Back to Author list", "Index")<br>
+@Html.ActionLink("Back to homepage", "Index", "Home")
