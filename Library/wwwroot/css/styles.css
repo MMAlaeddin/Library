@@ -10,3 +10,28 @@ body {
   color: rgb(255, 255, 240);
   margin-top: 25px;
 }
+
+input {
+  background-color: black;
+  border: 3px solid black;
+  border-radius: 20px;
+  text-align: center;
+  color: ivory;
+  width: 35%;
+  margin: 10px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  border: 3px solid black;
+  border-radius: 15px;
+  background-image: radial-gradient(rgb(94, 92, 92), rgb(18, 18, 155));
+  color: ivory;
+  margin: 25px;
+  font-size: 140%;
+}
+
+.btn:hover {
+  cursor: pointer;
+  opacity: .8;
+}

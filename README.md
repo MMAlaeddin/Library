@@ -75,7 +75,7 @@ _Note For Editors:_
 
 _No known bugs at this time._
 
-## Support and contact details
+## Support and Contact Details
 
 _Have a bug or an issue with this application? [Open a new issue](https://github.com/fractalscape13/Library/issues) here on GitHub._
 
