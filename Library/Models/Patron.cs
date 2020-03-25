@@ -6,7 +6,7 @@ namespace Library.Models
   {
     public Patron()
     {
-      this.Books = new HashSet<BookPatron>();
+      this.Books = new HashSet<Book>();
     }
 
     public int PatronId { get; set; }
@@ -14,6 +14,6 @@ namespace Library.Models
     public string Name { get; set; }
     public string Email { get; set; }
     public virtual ApplicationUser User { get; set; }
-    public ICollection<BookPatron> Books { get; set; }
+    public ICollection<Book> Books { get; set; }
   }
 }

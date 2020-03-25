@@ -3,14 +3,15 @@
 }
 
 @using Library.Models;
-@model IEnumerable<Library.Models.Patron>;
+@using System.Security.Claims
+@model Library.Models.Patron
 
 <h2>Books you've checked out: </h2>
 
 <div class="box">
-  @if (@Model.Any())
+  @if (@Model.Books.Count != 0)
   {
-    @foreach (Patron patron in Model)
+    @foreach (Book book in Model.Books)
     {
       <h4>@Html.ActionLink($"{book.Title}", "Details", new {book = book.BookId})</h4>
     }

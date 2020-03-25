@@ -66,7 +66,7 @@ namespace Library.Controllers
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       
-      patron.AccountId = currentUser.Id;
+      patron.User = currentUser;
       _db.Patrons.Add(patron);
       if (BookId != 0)
       {
@@ -80,8 +80,8 @@ namespace Library.Controllers
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
-      var userPatrons = _db.Patrons.Where(entry => entry.User.Id == currentUser.Id);
-      return View(userPatrons);
+      var thisPatron = _db.Patrons.Where(entry => entry.User.Id == currentUser.Id);
+      return View(thisPatron);
     }
 
     public ActionResult Details(int id)
