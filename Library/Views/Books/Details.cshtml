@@ -3,26 +3,33 @@
 }
 
 @model Library.Models.Book
-<h3> Book Info: </h3> 
-<hr/>
-<h5> @Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)</h5>
 
-@if(@Model.Authors.Count == 0 )
-{
-  <p> No Books for this Author...is he even really an Author? </p>
-}
-else
-{
-  <h4> The author wrote this/these books:</h4>
-  <ul>
-  @foreach(var join in Model.Authors)
+<h3> Book Deets </h3> 
+<hr/>
+<h3> @Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)</h3>
+<hr/>
+<div class="box">
+  @if(@Model.Authors.Count == 0 )
   {
-    <ul>@join.Author.Name</ul>
-    @using(Html.BeginForm("DeleteAuthor", "Books"))
+    <p> No authors for this book...is it even really a book? </p>
+  }
+  else
+  {
+    <h4> Author(s):</h4>
+    
+    @foreach(var join in Model.Authors)
     {
-      @Html.Hidden("joinId", @join.AuthorBookId)
-      <input class="btn" type="submit" value="Delete" />    
+      <h3>@join.Author.Name</h3>
+
+      @using(Html.BeginForm("DeleteAuthor", "Books"))
+      {
+        @Html.Hidden("joinId", @join.AuthorBookId)
+        <input class="btn" type="submit" value="Delete this book" />    
+      }
     }
   }
-  </ul>
-}
+</div>
+
+<p>@Html.ActionLink("Checkout book", "Checkout", new {id = Model.BookId})</p>
+<p>@Html.ActionLink("Add author", "AddAuthor", new {id = Model.BookId})</p>
+<p>@Html.ActionLink("Edit this book", "Edit")</p>
