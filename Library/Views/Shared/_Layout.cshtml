@@ -3,12 +3,37 @@
   <head>
     <meta charset="utf-8">
     <title>Library</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
   <body>
-
+  <div class="demo-layout-transparent mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header mdl-layout__header--transparent">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Library</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation -->
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="/Account">Account</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Main Menu</span>
+      <nav class="mdl-navigation">
+        <a class="link" href="/Books">Books</a>
+        <a class="link" href="/Authors">Authors</a>
+        <a class="link" href="/">Home</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+    </main>
+  </div>
     @RenderBody()
-
   </body>
 </html>
