@@ -61,18 +61,17 @@ namespace Library.Controllers
 
     [Authorize]
     [HttpPost, ActionName("Checkout")]
-    public async Task<ActionResult> CheckOutConfirm(Book book, int id)
+    public async Task<ActionResult> CheckOutConfirm(Patron patron, int BookId)
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       
-      book.User = currentUser;
-      _db.Books.Add(book);
-      // if (AuthorId != 0)
-      // {
-      //   _db.AuthorBook.Add(new AuthorBook() { AuthorId = AuthorId, BookId = book.BookId });
-      // }
-      _db.Entry(book).State = EntityState.Modified;
+      patron.AccountId = currentUser.Id;
+      _db.Patrons.Add(patron);
+      if (BookId != 0)
+      {
+        _db.BookPatrons.Add(new BookPatron() { PatronId = patron.PatronId, BookId = BookId });
+      }
       _db.SaveChanges();
       return RedirectToAction("UserBooks");
     }
@@ -81,8 +80,8 @@ namespace Library.Controllers
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
-      var userBooks = _db.Books.Where(entry => entry.User.Id == currentUser.Id);
-      return View(userBooks);
+      var userPatrons = _db.Patrons.Where(entry => entry.User.Id == currentUser.Id);
+      return View(userPatrons);
     }
 
     public ActionResult Details(int id)

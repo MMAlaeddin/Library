@@ -30,12 +30,14 @@ namespace Library.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Register(RegisterViewModel model)
+    public async Task<ActionResult> Register (RegisterViewModel model)
     {
-      var user = new ApplicationUser { UserName = model.Email };
+      ApplicationUser user = new ApplicationUser {Email = model.Email};
       IdentityResult result = await _userManager.CreateAsync(user, model.Password);
       if (result.Succeeded)
       {
+        _db.Patrons.Add(new Patron() { AccountId = user.Id });
+        _db.SaveChanges();
         return RedirectToAction("Index");
       }
       else
