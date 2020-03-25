@@ -1,0 +1,22 @@
+@{
+  Layout = "Layout";
+}
+
+@using Library.Models;
+@model IEnumerable<Library.Models.Book>;
+
+<h2>Books you've checked out: </h2>
+
+@if (@Model.Any())
+{
+  @foreach (Book book in Model)
+  {
+    <h4>@Html.ActionLink($"{book.Title}", "Details", new {book = book.BookId})</h4>
+  }
+}
+else 
+{
+  <h4>There's no books here, you should probably read more...</h4>
+}
+
+<p>@Html.ActionLink("Checkout another book", "Index", "Books") </p>
