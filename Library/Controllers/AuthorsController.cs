@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using Library.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Library.Models;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace Library.Controllers
 {
@@ -17,10 +19,11 @@ namespace Library.Controllers
 
     public ActionResult Index()
     {
-      List<Author> model = _db.Authors.ToList();
+      List<Author> model = _db.Authors.OrderBy(x => x.Name).ToList();
       return View(model);
     }
 
+    [Authorize]
     public ActionResult Create()
     {
       return View();
@@ -43,6 +46,7 @@ namespace Library.Controllers
       return View(thisAuthor);
     }
 
+    [Authorize]
     public ActionResult Edit(int id)
     {
       var thisAuthor = _db.Authors.FirstOrDefault(author => author.AuthorId == id);
@@ -57,6 +61,7 @@ namespace Library.Controllers
       return RedirectToAction("Index");
     }
 
+    [Authorize]
     public ActionResult Delete(int id)
     {
       var thisAuthor = _db.Authors.FirstOrDefault(author => author.AuthorId == id);
