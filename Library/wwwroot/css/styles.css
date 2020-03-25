@@ -9,6 +9,7 @@ body {
   font-family: courier;
   color: rgb(255, 255, 240);
   margin-top: 25px;
+  background-repeat: no-repeat;
 }
 
 input {
@@ -39,4 +40,40 @@ input {
 select {
   background-color: black;
   margin: 15px;
+}
+
+.box {
+  background-color: rgba(255, 255, 255, 0.199);
+  margin: 50px;
+  margin-left: 150px;
+  margin-right: 150px;
+  padding: 20px;
+  color: darkblue;
+  border-radius: 15px;
+}
+
+a {
+  color: darkblue;
+}
+
+i {
+  color: ivory;
+}
+
+pre {
+  background-color: transparent;
+  border: none;
+  color: gold;
+}
+
+.mdl-layout__drawer {
+  background-color: rgb(7, 121, 121);
+  color: ivory;
+  border-radius: 15px;
+  border: 5px solid black;
+}
+
+.link {
+  color: ivory;
+  margin-bottom: 30px;
 }
