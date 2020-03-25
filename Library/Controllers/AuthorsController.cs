@@ -40,7 +40,7 @@ namespace Library.Controllers
         .Include(author => author.Books)
         .ThenInclude(join => join.Book)
         .FirstOrDefault(author => author.AuthorId == id);
-      return ViewModels(thisAuthor);
+      return View(thisAuthor);
     }
 
     public ActionResult Edit(int id)

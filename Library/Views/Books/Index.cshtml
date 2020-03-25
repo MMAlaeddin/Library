@@ -1,3 +1,27 @@
 @{
   Layout = "_Layout";
 }
+
+@using Library.Models;
+@model IEnumerable<Library.Models.Book>;
+
+<h1>All Books</h1>
+<hr />
+
+@if(@Model.Any())
+{
+  @foreach (Book book in Model)
+  {
+    <h3>@Html.ActionLink($"{book.Title}", "Details", new {id = book.BookId})</h3>
+    @foreach (AuthorBook author in book.Authors)
+    {
+      <p><em>@Html.ActionLink($"{author.Author.Name}", "Details", "Authors", new {id = author.AuthorId})</em></p>
+    }
+  }
+}
+else
+{
+  <h3> No books here! </h3>
+}
+<p>@Html.ActionLink("Add a book", "Create")</p>
+<p>@Html.ActionLink("Go Home", "Index", "Home")</p>

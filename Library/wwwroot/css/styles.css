@@ -35,3 +35,8 @@ input {
   cursor: pointer;
   opacity: .8;
 }
+
+select {
+  background-color: black;
+  margin: 15px;
+}

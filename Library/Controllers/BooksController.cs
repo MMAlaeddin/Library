@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Library.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -7,10 +8,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
-using Library.Models;
 
 namespace Library.Controllers
 {
+  [Authorize]
   public class BooksController : Controller
   {
     private readonly LibraryContext _db;
@@ -54,7 +55,7 @@ namespace Library.Controllers
     public ActionResult Details(int id)
     {
       var thisBook = _db.Books
-        .Include(book => book.Author)
+        .Include(book => book.Authors)
         .ThenInclude(join => join.Author)
         .FirstOrDefault(book => book.BookId == id);
       return View(thisBook);
@@ -91,7 +92,7 @@ namespace Library.Controllers
     {
       if (AuthorId != 0)
       {
-        _db.AuthorItem.Add(new AuthorItem() { AuthorId = AuthorId, BookId = book.BookId });
+        _db.AuthorBook.Add(new AuthorBook() { AuthorId = AuthorId, BookId = book.BookId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");

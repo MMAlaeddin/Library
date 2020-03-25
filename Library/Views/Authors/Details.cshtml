@@ -4,7 +4,7 @@
 
 @model Library.Models.Author;
 
-<h2>Author Information: </h2>
+<h2>Author Information </h2>
 <hr/>
 @Html.DisplayNameFor(model => model.Name):  @Html.DisplayFor(model => model.Name)
 
@@ -14,11 +14,10 @@
 }
 else
 {
-  <h4>Books this dude wrote: </h4>
-  <hr/>
+  <h4>Books by this author: </h4>
   @foreach(var join in Model.Books)
   {
-    <p>@join.Book.Title</p>
+    <h3>@Html.ActionLink($"{join.Book.Title}", "Details", "Books", new {id = join.Book.BookId})</h3>
   }
 }
 
