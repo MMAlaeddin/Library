@@ -19,17 +19,18 @@
     
     @foreach(var join in Model.Authors)
     {
-      <h3>@join.Author.Name</h3>
+      <h3>@Html.ActionLink($"{join.Author.Name}", "Details", "Authors", new {id = join.Author.AuthorId})</h3>
 
       @using(Html.BeginForm("DeleteAuthor", "Books"))
       {
         @Html.Hidden("joinId", @join.AuthorBookId)
-        <input class="btn" type="submit" value="Delete this book" />    
+        <input type="submit" value="Delete author" />    
       }
     }
   }
 </div>
 
 <p>@Html.ActionLink("Checkout book", "Checkout", new {id = Model.BookId})</p>
+<p>@Html.ActionLink("Delete book", "Delete", new {id = Model.BookId})</p>
 <p>@Html.ActionLink("Add author", "AddAuthor", new {id = Model.BookId})</p>
-<p>@Html.ActionLink("Edit this book", "Edit")</p>
+<p>@Html.ActionLink("Edit this book", "Edit", new {id = Model.BookId})</p>

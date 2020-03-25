@@ -9,7 +9,7 @@
 {
 <h2>Success!</h2>
   <p>Hello @User.Identity.Name!</p>
-  
+
   @using (Html.BeginForm("LogOff", "Account"))
   {
     <input type="submit" class="btn btn-default" value="Log out" />
@@ -17,8 +17,10 @@
 }
 else
 {
-  <p>@Html.ActionLink("Register", "Register")</p>
-  <p>@Html.ActionLink("Log in", "Login")</p>
+  <h4> Whoops, looks like you need to log in!</h4>
+  <h4> If you don't have an account yet, please register!</h4>
+  <p class="btn">@Html.ActionLink("Register", "Register")</p>
+  <p class="btn">@Html.ActionLink("Log in", "Login")</p>
 }
 
 @* <p>@Html.ActionLink("See all authors", "Index", "Authors")</p>

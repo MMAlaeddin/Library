@@ -53,20 +53,36 @@ namespace Library.Controllers
     }
 
     [Authorize]
-    [HttpPost]
-    public async Task<ActionResult> CheckOut(Book book)
+    public ActionResult Checkout(int id)
+    {
+      var thisBook = _db.Books.FirstOrDefault(books => books.BookId == id);
+      return View(thisBook);
+    }
+
+    [Authorize]
+    [HttpPost, ActionName("Checkout")]
+    public async Task<ActionResult> CheckOutConfirm(Book book, int id)
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
-      // book.User = currentUser;
-      // _db.Books.Add(book.User);
+      
+      book.User = currentUser;
+      _db.Books.Add(book);
       // if (AuthorId != 0)
       // {
       //   _db.AuthorBook.Add(new AuthorBook() { AuthorId = AuthorId, BookId = book.BookId });
       // }
-      // _db.Entry(book).State = EntityState.Modified;
+      _db.Entry(book).State = EntityState.Modified;
       _db.SaveChanges();
-      return View();
+      return RedirectToAction("UserBooks");
+    }
+
+    public async Task<ActionResult> UserBooks()
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var userBooks = _db.Books.Where(entry => entry.User.Id == currentUser.Id);
+      return View(userBooks);
     }
 
     public ActionResult Details(int id)

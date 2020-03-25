@@ -53,11 +53,12 @@ select {
 }
 
 a {
-  color: darkblue;
+  color: gold;
 }
 
 i {
   color: ivory;
+  margin: 25px;
 }
 
 pre {

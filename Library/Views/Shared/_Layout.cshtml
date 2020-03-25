@@ -10,30 +10,34 @@
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
   <body>
-  <div class="demo-layout-transparent mdl-layout mdl-js-layout">
-    <header class="mdl-layout__header mdl-layout__header--transparent">
-      <div class="mdl-layout__header-row">
-        <!-- Title -->
-        <span class="mdl-layout-title">Library</span>
-        <!-- Add spacer, to align navigation to the right -->
-        <div class="mdl-layout-spacer"></div>
-        <!-- Navigation -->
+    <div class="demo-layout-transparent mdl-layout mdl-js-layout">
+      <header class="mdl-layout__header mdl-layout__header--transparent">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Library</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/Account">Login/My Account</a>
+            <a class="mdl-navigation__link" href="/Account/Register"></a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Main Menu</span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="/Account">Account</a>
+          <a class="link" href="/Books">Books</a>
+          <a class="link" href="/UserBooks">My Checkedout Books</a>
+          <a class="link" href="/Authors">Authors</a>
+          <a class="link" href="/Account">My Account</a>
+          <a class="link" href="/">Home</a>
         </nav>
       </div>
-    </header>
-    <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">Main Menu</span>
-      <nav class="mdl-navigation">
-        <a class="link" href="/Books">Books</a>
-        <a class="link" href="/Authors">Authors</a>
-        <a class="link" href="/">Home</a>
-      </nav>
+      <main class="mdl-layout__content">
+          @RenderBody()
+      </main>
     </div>
-    <main class="mdl-layout__content">
-    </main>
-  </div>
-    @RenderBody()
+
   </body>
 </html>
